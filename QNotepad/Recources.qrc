@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/imgs">
+        <file>file.png</file>
+        <file>open-folder32.png</file>
+        <file>copy.png</file>
+        <file>cut32.png</file>
+        <file>diskette.png</file>
+        <file>logout.png</file>
+        <file>paste.png</file>
+        <file>printer32.png</file>
+        <file>redo.png</file>
+        <file>undo.png</file>
+    </qresource>
+</RCC>
