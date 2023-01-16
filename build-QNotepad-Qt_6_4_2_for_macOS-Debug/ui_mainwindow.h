@@ -50,7 +50,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 614);
+        MainWindow->resize(799, 614);
         actionNew = new QAction(MainWindow);
         actionNew->setObjectName("actionNew");
         QIcon icon;
@@ -71,6 +71,7 @@ public:
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/imgs/printer32.png"), QSize(), QIcon::Normal, QIcon::On);
         actionPrint->setIcon(icon3);
+        actionPrint->setMenuRole(QAction::TextHeuristicRole);
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName("actionExit");
         QIcon icon4;
@@ -88,11 +89,12 @@ public:
         actionPaste->setIcon(icon6);
         actionCut = new QAction(MainWindow);
         actionCut->setObjectName("actionCut");
-        actionCut->setEnabled(false);
+        actionCut->setCheckable(false);
+        actionCut->setEnabled(true);
         QIcon icon7;
         icon7.addFile(QString::fromUtf8(":/imgs/cut32.png"), QSize(), QIcon::Normal, QIcon::On);
         actionCut->setIcon(icon7);
-        actionCut->setVisible(false);
+        actionCut->setVisible(true);
         actionRedo = new QAction(MainWindow);
         actionRedo->setObjectName("actionRedo");
         QIcon icon8;
@@ -107,7 +109,7 @@ public:
         centralwidget->setObjectName("centralwidget");
         verticalLayoutWidget = new QWidget(centralwidget);
         verticalLayoutWidget->setObjectName("verticalLayoutWidget");
-        verticalLayoutWidget->setGeometry(QRect(10, 10, 781, 511));
+        verticalLayoutWidget->setGeometry(QRect(10, 0, 781, 521));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -119,7 +121,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 22));
+        menubar->setGeometry(QRect(0, 0, 799, 22));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName("menuFile");
         menuEdit = new QMenu(menubar);
@@ -130,7 +132,11 @@ public:
         MainWindow->setStatusBar(statusbar);
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName("toolBar");
+        toolBar->setMovable(true);
+        toolBar->setAllowedAreas(Qt::BottomToolBarArea|Qt::LeftToolBarArea|Qt::TopToolBarArea);
+        toolBar->setOrientation(Qt::Horizontal);
         toolBar->setIconSize(QSize(24, 24));
+        toolBar->setFloatable(true);
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
         menubar->addAction(menuFile->menuAction());
@@ -147,7 +153,9 @@ public:
         menuEdit->addAction(actionRedo);
         toolBar->addAction(actionNew);
         toolBar->addAction(actionOpen);
-        toolBar->addAction(actionCut);
+        toolBar->addAction(actionSave_As);
+        toolBar->addAction(actionPrint);
+        toolBar->addAction(actionExit);
 
         retranslateUi(MainWindow);
 
@@ -156,7 +164,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Tan Editor", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Tan Note Editor", nullptr));
         actionNew->setText(QCoreApplication::translate("MainWindow", "New", nullptr));
         actionOpen->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
         actionSave_As->setText(QCoreApplication::translate("MainWindow", "Save As", nullptr));
